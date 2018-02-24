@@ -1,6 +1,6 @@
-# OctoPrint-Cr10_leveling
+# CR-10 Leveling
 
-**TODO:** Describe what your plugin does.
+This plugins adds leveling controls for your CR-10 to the Control tab.
 
 ## Setup
 
@@ -9,9 +9,8 @@ or manually using this URL:
 
     https://github.com/electr0sheep/OctoPrint-Cr10_leveling/archive/master.zip
 
-**TODO:** Describe how to install your plugin, if more needs to be done than just installing it via pip or through
-the plugin manager.
-
 ## Configuration
 
-**TODO:** Describe your plugin's configuration options (if any).
+The plugin will look for the leveling controls at OctoPrint boot and add them if
+it doesn't find them. To disable this checking, simply disable the plugin. No
+other configuration is necessary.
