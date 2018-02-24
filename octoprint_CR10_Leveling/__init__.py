@@ -18,7 +18,6 @@ class Cr10_levelingPlugin(octoprint.plugin.SettingsPlugin,
                 addItemsToControl = False
 
         if addItemsToControl:
-            print("\nAdding items to control\n")
             addedControls = addedControls + s.get(["controls"])
             s.set(["controls"], addedControls)
 
