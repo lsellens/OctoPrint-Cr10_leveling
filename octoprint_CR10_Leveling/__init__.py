@@ -6,7 +6,11 @@ import octoprint.plugin
 
 
 class Cr10_levelingPlugin(octoprint.plugin.SettingsPlugin,
+                          octoprint.plugin.TemplatePlugin,
                           octoprint.plugin.StartupPlugin):
+
+    def get_template_configs(self):
+        return dict(type="settings", custom_bindings=False)
 
     def on_after_startup(self):
         s = settings()
@@ -20,6 +24,11 @@ class Cr10_levelingPlugin(octoprint.plugin.SettingsPlugin,
         if addItemsToControl:
             addedControls = addedControls + s.get(["controls"])
             s.set(["controls"], addedControls)
+
+    def on_settings_save(self):
+        print()
+        print("You saved settings")
+        print()
 
 
     def get_update_information(self):
