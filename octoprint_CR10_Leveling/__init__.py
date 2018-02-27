@@ -9,7 +9,10 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
                           octoprint.plugin.SettingsPlugin):
 
     def get_settings_defaults(self):
-        return dict(bed_temp=60, nozzle_temp=200)
+        return dict(bed_temp=50, nozzle_temp=170, upper_left_x=10,
+                    upper_left_y=10, upper_right_x=290, upper_right_y=10,
+                    lower_left_x=10, lower_left_y=290, lower_right_x=290,
+                    lower_right_y=290, center_x=150, center_y=150)
 
     def get_template_configs(self):
         return [dict(type="settings", custom_bindings=False)]

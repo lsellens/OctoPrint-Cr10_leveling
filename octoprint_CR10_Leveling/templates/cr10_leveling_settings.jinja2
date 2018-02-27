@@ -1,15 +1,93 @@
 <form class="form-horizontal">
   <div class="control-group">
+    <h3>Apply Heat</h3>
     <label class="control-label">Bed temp:</label>
     <div class="controls">
       <input type="number" data-bind="value: settings.plugins.CR10_Leveling.bed_temp">
     </div>
   </div>
-
   <div class="control-group">
     <label class="control-label">Nozzle temp:</label>
     <div class="controls">
       <input type="number" data-bind="value: settings.plugins.CR10_Leveling.nozzle_temp">
+    </div>
+  </div>
+  <!--
+  <div class="control-group">
+    <label class="control-label">Post-heat tune:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.tune">
+    </div>
+  </div>
+  -->
+
+  <h3>Upper Left</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.upper_left_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.upper_left_y">
+    </div>
+  </div>
+
+  <h3>Upper Right</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.upper_right_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.upper_right_y">
+    </div>
+  </div>
+
+  <h3>Lower Left</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.lower_left_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.lower_left_y">
+    </div>
+  </div>
+
+  <h3>Lower Right</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.lower_right_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.lower_right_y">
+    </div>
+  </div>
+
+  <h3>Center</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.center_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.center_y">
     </div>
   </div>
 </form>
