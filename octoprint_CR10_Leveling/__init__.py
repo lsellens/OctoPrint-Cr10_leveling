@@ -10,9 +10,9 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
 
     def get_settings_defaults(self):
         return dict(bed_temp=50, nozzle_temp=170, play_tune=True,
-                    front_left_x=10, front_left_y=10, front_right_x=290,
-                    front_right_y=10, back_left_x=10, back_left_y=290,
-                    back_right_x=290, back_right_y=290, center_x=150,
+                    front_left_x=30, front_left_y=30, front_right_x=270,
+                    front_right_y=30, back_left_x=30, back_left_y=270,
+                    back_right_x=270, back_right_y=270, center_x=150,
                     center_y=150)
 
     def get_template_configs(self):
