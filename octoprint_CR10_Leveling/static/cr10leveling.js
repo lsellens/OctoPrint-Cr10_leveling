@@ -6,7 +6,6 @@ $(function() {
 
     self.getAdditionalControls = function() {
       var settings = self.settings.settings.settings.plugins.CR10_Leveling
-      console.log(settings.play_tune());
       if (settings.play_tune()) {
         return [{
           'customClass': '', 'layout': 'horizontal_grid', 'name': 'CR-10 Bed Leveling', 'children':
@@ -78,10 +77,6 @@ $(function() {
             'customClass': 'btn', 'name': 'Back Right', 'offset': '2'}]
         }]
       }
-    }
-    self.onSettingsBeforeSave = function () {
-      console.log("Saving settings...");
-      self.getAdditionalControls();
     }
   }
 
