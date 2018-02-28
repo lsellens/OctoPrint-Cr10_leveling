@@ -1,0 +1,109 @@
+<div style="background-color: #d9534f; color: #fff; margin: 10px; padding: 10px; border-radius: 4px">
+  Warning: Please home your printer before using the buttons, failing to do so
+  can cause the printer head to go out-of-bounds. There is a fix for this in the
+  works, but it is not complete yet.
+</div>
+<div style="background-color: #5bc0de; color: #fff; margin: 10px; padding: 10px; border-radius: 4px">
+  After saving these settings, please refresh the page to update the control
+  buttons. There is a fix so that you don't have to refresh the page in the
+  works, but it is not complete yet.
+</div>
+<form class="form-horizontal">
+  <div class="control-group">
+    <h3>Apply Heat</h3>
+    <label class="control-label">Bed temp:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.bed_temp">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Nozzle temp:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.nozzle_temp">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Play post-heat tune:</label>
+    <div class="controls">
+      <input type="checkbox" data-bind="checked: settings.plugins.CR10_Leveling.play_tune">
+    </div>
+  </div>
+  <!--
+  <div class="control-group">
+    <label class="control-label">Post-heat tune:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.tune">
+    </div>
+  </div>
+  -->
+
+  <h3>Front Left</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.front_left_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.front_left_y">
+    </div>
+  </div>
+
+  <h3>Front Right</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.front_right_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.front_right_y">
+    </div>
+  </div>
+
+  <h3>Back Left</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.back_left_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.back_left_y">
+    </div>
+  </div>
+
+  <h3>Back Right</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.back_right_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.back_right_y">
+    </div>
+  </div>
+
+  <h3>Center</h3>
+  <div class="control-group">
+    <label class="control-label">X:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.center_x">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Y:</label>
+    <div class="controls">
+      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.center_y">
+    </div>
+  </div>
+</form>
