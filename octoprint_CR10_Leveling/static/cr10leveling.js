@@ -29,25 +29,25 @@ $(function() {
               'M300 S1975 P100'],
             'customClass': 'btn btn-danger', 'name': 'Apply Heat', 'offset': '2'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.upper_left_x() + 'Y' +
-              settings.upper_left_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Upper Left'},
+              ['G1 Z10 F500', 'G1 X' + settings.front_left_x() + 'Y' +
+              settings.front_left_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Front Left'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.upper_right_x() + 'Y' +
-              settings.upper_right_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Upper Right', 'offset': '2'},
+              ['G1 Z10 F500', 'G1 X' + settings.front_right_x() + 'Y' +
+              settings.front_right_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Front Right', 'offset': '2'},
             {'width': '8', 'commands':
               ['G1 Z10 F500', 'G1 X' + settings.center_x() + 'Y' +
               settings.center_y() + 'F3600', 'G1 Z0 F500'],
             'customClass': 'btn', 'name': 'Center', 'offset': '2'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.lower_left_x() + 'Y' +
-              settings.lower_left_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Lower Left'},
+              ['G1 Z10 F500', 'G1 X' + settings.back_left_x() + 'Y' +
+              settings.back_left_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Back Left'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.lower_right_x() + 'Y' +
-              settings.lower_right_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Lower Right', 'offset': '2'}]
+              ['G1 Z10 F500', 'G1 X' + settings.back_right_x() + 'Y' +
+              settings.back_right_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Back Right', 'offset': '2'}]
         }]
       } else {
         return [{
@@ -57,25 +57,25 @@ $(function() {
               'M190 S' + settings.bed_temp(), 'M109 S' + settings.nozzle_temp()],
             'customClass': 'btn btn-danger', 'name': 'Apply Heat', 'offset': '2'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.upper_left_x() + 'Y' +
-              settings.upper_left_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Upper Left'},
+              ['G1 Z10 F500', 'G1 X' + settings.front_left_x() + 'Y' +
+              settings.front_left_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Front Left'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.upper_right_x() + 'Y' +
-              settings.upper_right_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Upper Right', 'offset': '2'},
+              ['G1 Z10 F500', 'G1 X' + settings.front_right_x() + 'Y' +
+              settings.front_right_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Front Right', 'offset': '2'},
             {'width': '8', 'commands':
               ['G1 Z10 F500', 'G1 X' + settings.center_x() + 'Y' +
               settings.center_y() + 'F3600', 'G1 Z0 F500'],
             'customClass': 'btn', 'name': 'Center', 'offset': '2'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.lower_left_x() + 'Y' +
-              settings.lower_left_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Lower Left'},
+              ['G1 Z10 F500', 'G1 X' + settings.back_left_x() + 'Y' +
+              settings.back_left_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Back Left'},
             {'width': '2', 'commands':
-              ['G1 Z10 F500', 'G1 X' + settings.lower_right_x() + 'Y' +
-              settings.lower_right_y() + 'F3600', 'G1 Z0 F500'],
-            'customClass': 'btn', 'name': 'Lower Right', 'offset': '2'}]
+              ['G1 Z10 F500', 'G1 X' + settings.back_right_x() + 'Y' +
+              settings.back_right_y() + 'F3600', 'G1 Z0 F500'],
+            'customClass': 'btn', 'name': 'Back Right', 'offset': '2'}]
         }]
       }
     }
