@@ -18,6 +18,14 @@ or manually using this URL:
 
 ## Configuration
 
-The plugin will look for the leveling controls at OctoPrint boot and add them if
-it doesn't find them. To disable this checking, simply disable the plugin. No
-other configuration is necessary.
+Options can be configured from OctoPrint's settings menu under "Plugins"
+Available options are:
+ - Bed Temp
+ - Nozzle Temp
+ - Simultaneously heat Bed and Nozzle
+ - Feed Rate (Speed of movement)
+ - Front Left Position
+ - Front Right Position
+ - Back Left Position
+ - Back Right Position
+ - Center Position
