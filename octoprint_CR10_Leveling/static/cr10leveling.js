@@ -33,25 +33,25 @@ $(function() {
             ['M190 S' + settings.bed_temp(), 'M109 S' + settings.nozzle_temp()],
           'customClass': 'btn btn-danger', 'name': 'Apply Heat', 'offset': '2'},
           {'width': '2', 'commands':
-            ['G90', 'G0 Z10 F500', 'G0 X' + settings.front_left_x() + 'Y' +
-            settings.front_left_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
-          'customClass': 'btn', 'name': 'Front Left'},
+            ['G90', 'G0 Z10 F500', 'G0 X' + settings.back_left_x() + 'Y' +
+            settings.back_left_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
+          'customClass': 'btn', 'name': 'Back \xa0Left\xa0'},
           {'width': '2', 'commands':
-            ['G90', 'G0 Z10 F500', 'G0 X' + settings.front_right_x() + 'Y' +
-            settings.front_right_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
-          'customClass': 'btn', 'name': 'Front Right', 'offset': '2'},
+            ['G90', 'G0 Z10 F500', 'G0 X' + settings.back_right_x() + 'Y' +
+            settings.back_right_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
+          'customClass': 'btn', 'name': 'Back Right', 'offset': '2'},
           {'width': '8', 'commands':
             ['G90', 'G0 Z10 F500', 'G0 X' + settings.center_x() + 'Y' +
             settings.center_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
           'customClass': 'btn', 'name': 'Center', 'offset': '2'},
           {'width': '2', 'commands':
-            ['G90', 'G0 Z10 F500', 'G0 X' + settings.back_left_x() + 'Y' +
-            settings.back_left_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
-          'customClass': 'btn', 'name': 'Back Left'},
+            ['G90', 'G0 Z10 F500', 'G0 X' + settings.front_left_x() + 'Y' +
+            settings.front_left_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
+          'customClass': 'btn', 'name': 'Front \xa0Left\xa0'},
           {'width': '2', 'commands':
-            ['G90', 'G0 Z10 F500', 'G0 X' + settings.back_right_x() + 'Y' +
-            settings.back_right_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
-          'customClass': 'btn', 'name': 'Back Right', 'offset': '2'}]
+            ['G90', 'G0 Z10 F500', 'G0 X' + settings.front_right_x() + 'Y' +
+            settings.front_right_y() + 'F' + settings.feed_rate(), 'G0 Z0 F500'],
+          'customClass': 'btn', 'name': 'Front Right', 'offset': '2'}]
       }]
 
       var finalSettings = baseSettings;
