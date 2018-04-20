@@ -20,8 +20,11 @@ Email: electr0sheep@electr0sheep.com
 
 <div style="background-color: #d9534f; color: #fff; margin: 10px; padding: 10px; border-radius: 4px">
   Warning: Please home your printer before using the buttons, failing to do so
-  can cause the printer head to go out-of-bounds. There is a fix for this in the
-  works, but it is not complete yet.
+  can cause the printer head to go out-of-bounds. <s>There is a fix for this in the
+  works, but it is not complete yet.</s> 04/19/2018 UPDATE: The OctoPrint core
+  exhibits the same behavior. Therefore, forcing the user to home before using
+  this plugin is beyond its scope. This issue won't be fixed in the forseeable
+  future.
 </div>
 <div style="background-color: #5bc0de; color: #fff; margin: 10px; padding: 10px; border-radius: 4px">
   After saving these settings, please refresh the page to update the control
@@ -63,6 +66,12 @@ Email: electr0sheep@electr0sheep.com
     <label class="control-label">Heat Bed and Nozzle simultaneously:</label>
     <div class="controls">
       <input type="checkbox" data-bind="checked: settings.plugins.CR10_Leveling.heat_simultaneously">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Wait for heating to finish (if unchecked, bed and nozzle will heat simultaneously):</label>
+    <div class="controls">
+      <input type="checkbox" data-bind="checked: settings.plugins.CR10_Leveling.wait_for_heat">
     </div>
   </div>
   <div class="control-group">

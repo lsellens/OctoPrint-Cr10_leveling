@@ -30,7 +30,7 @@ $(function() {
           [{'width': '11', 'output': 'WARNING: DO NOT USE CONTROLS WITHOUT HOMING FIRST!!!'},
             {'width': '11', 'output': 'If you changed settings, make sure you refresh the page'},
           {'width': '11', 'commands':
-            ['M190 S' + settings.bed_temp(), 'M109 S' + settings.nozzle_temp()],
+            [],
           'customClass': 'btn btn-danger', 'name': 'Apply Heat', 'offset': '2'},
           {'width': '2', 'commands':
             ['G90', 'G0 Z' + settings.upper_z() + 'F500', 'G0 X' +
@@ -61,11 +61,14 @@ $(function() {
 
       var finalSettings = baseSettings;
 
+      if (settings.wait_for_heat()) {
+        waitForHeat(finalSettings);
+      }
+      if (settings.heat_simultaneously() || !settings.wait_for_heat()) {
+        applySimultaneousHeat(finalSettings);
+      }
       if (settings.play_tune()) {
         applyTune(finalSettings);
-      }
-      if (settings.heat_simultaneously()) {
-        applySimultaneousHeat(finalSettings);
       }
       return finalSettings;
     }
@@ -89,8 +92,15 @@ $(function() {
       'M300 S1975 P100')
     }
 
+    function waitForHeat(currentSettings) {
+      var settings = self.settings.settings.settings.plugins.CR10_Leveling;
+      var heatCommand = currentSettings[0].children[2].commands;
+
+      heatCommand.push('M190 S' + settings.bed_temp(), 'M109 S' + settings.nozzle_temp());
+    }
+
     function applySimultaneousHeat(currentSettings) {
-      var settings = self.settings.settings.settings.plugins.CR10_Leveling
+      var settings = self.settings.settings.settings.plugins.CR10_Leveling;
       var heatCommand = currentSettings[0].children[2].commands;
 
       heatCommand.unshift('M140 S' + settings.bed_temp(), 'M104 S' + settings.nozzle_temp());
