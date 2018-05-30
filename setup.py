@@ -11,14 +11,14 @@ plugin_package = "octoprint_CR10_Leveling"
 
 # The plugin's human readable name. Can be overwritten within OctoPrint's internal data via __plugin_name__ in the
 # plugin module
-plugin_name = "CR-10 Leveling"
+plugin_name = "Bed Leveling"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = "2.1.0"
+plugin_version = "2.1.1"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
-plugin_description = """Adds CR-10 leveling buttons to the controls tab"""
+plugin_description = """Adds bed leveling buttons to the controls tab"""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
 plugin_author = "electr0sheep"
