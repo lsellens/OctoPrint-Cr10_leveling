@@ -108,6 +108,10 @@ Email: electr0sheep@electr0sheep.com
       <input type="number" data-bind="value: settings.plugins.CR10_Leveling.upper_z">
     </div>
   </div>
+  <div class="control-group">
+    <label for="autolevel_command"><i class="icon icon-info-sign" title="GCODE commands to send to printer to run autoleveling" data-toggle="tooltip"></i>Autolevel GCODE Commands (empty for no Autoleveling)</label>
+    <textarea class="input-block-level" id="autolevel_command" rows="4" data-bind="value: settings.plugins.CR10_Leveling.autolevel"></textarea>
+  </div>
 
   <h3>Front Left</h3>
   <div class="control-group">
