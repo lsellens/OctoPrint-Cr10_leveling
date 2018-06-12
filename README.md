@@ -1,6 +1,6 @@
-# CR-10 Leveling
+# Bed Leveling
 
-### Adds CR-10 leveling buttons to the controls tab.
+### Adds bed leveling buttons to the controls tab.
 
 This plugin adds buttons to apply heat to the bed and nozzle, and move the printing head to each of the four corners of the bed, as well as the center of the bed.
 
@@ -28,6 +28,9 @@ Available options are:
  - Nozzle Temp
  - Simultaneously heat Bed and Nozzle
  - Feed Rate (Speed of movement)
+ - Lower Z coordinate
+ - Upper Z coordinate
+ - Autolevel Commands
  - Front Left Position
  - Front Right Position
  - Back Left Position
