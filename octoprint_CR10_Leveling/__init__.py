@@ -21,6 +21,7 @@ from __future__ import absolute_import
 from octoprint.settings import settings
 import octoprint.plugin
 
+__plugin_pythoncompat__ = ">=2.7,<4"
 
 class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
                           octoprint.plugin.TemplatePlugin,
