@@ -1,4 +1,4 @@
-# OctoPrint CR-10 Leveling Plugin. Allows user to easily level 3D printer.
+# OctoPrint Bed Leveling Plugin. Allows user to easily level 3D printer.
 # Copyright (C) 2018  electr0sheep
 #
 # This program is free software: you can redistribute it and/or modify
@@ -60,12 +60,12 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
 
                 # version check: github repository
                 type="github_release",
-                user="electr0sheep",
+                user="lsellens",
                 repo="OctoPrint-Cr10_leveling",
                 current=self._plugin_version,
 
                 # update method: pip
-                pip="https://github.com/electr0sheep/OctoPrint-Cr10_leveling/archive/{target_version}.zip"
+                pip="https://github.com/lsellens/OctoPrint-Cr10_leveling/archive/{target_version}.zip"
             )
         )
 
