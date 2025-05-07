@@ -84,12 +84,11 @@ $(function() {
 
       if (settings.wait_for_heat()) {
         waitForHeat(finalSettings);
-      }
-      if (settings.heat_simultaneously() || !settings.wait_for_heat()) {
-        applySimultaneousHeat(finalSettings);
-      }
-      if (settings.play_tune()) {
-        applyTune(finalSettings);
+        if (settings.play_tune()) {
+          applyTune(finalSettings);
+        }
+      } else {
+          applyHeat(finalSettings);
       }
       return finalSettings;
     }
@@ -120,7 +119,7 @@ $(function() {
       heatCommand.push('M190 S' + settings.bed_temp(), 'M109 S' + settings.nozzle_temp());
     }
 
-    function applySimultaneousHeat(currentSettings) {
+    function applyHeat(currentSettings) {
       var settings = self.settings.settings.settings.plugins.CR10_Leveling;
       var heatCommand = currentSettings[0].children[2].commands;
 

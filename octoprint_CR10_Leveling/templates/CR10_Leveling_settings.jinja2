@@ -48,32 +48,17 @@ Email: electr0sheep@electr0sheep.com
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label">Heat Bed and Nozzle simultaneously:</label>
-    <div class="controls">
-      <input type="checkbox" data-bind="checked: settings.plugins.CR10_Leveling.heat_simultaneously">
-    </div>
-  </div>
-  <div class="control-group">
     <label class="control-label">Wait for heating to finish (if unchecked, bed and nozzle will heat simultaneously):</label>
     <div class="controls">
       <input type="checkbox" data-bind="checked: settings.plugins.CR10_Leveling.wait_for_heat">
     </div>
   </div>
-  <div class="control-group">
+  <div class="control-group" data-bind="visible: settings.plugins.CR10_Leveling.wait_for_heat">
     <label class="control-label">Play post-heat tune:</label>
     <div class="controls">
       <input type="checkbox" data-bind="checked: settings.plugins.CR10_Leveling.play_tune">
     </div>
   </div>
-  <!--
-  <div class="control-group">
-    <label class="control-label">Post-heat tune:</label>
-    <div class="controls">
-      <input type="number" data-bind="value: settings.plugins.CR10_Leveling.tune">
-    </div>
-  </div>
-  -->
-
   <h3>All Controls</h3>
   <div class="control-group">
     <label class="control-label">Feed Rate (how fast the x/y axes move):</label>
