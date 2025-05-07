@@ -27,9 +27,7 @@ $(function() {
 
       var baseSettings = [{
         'customClass': '', 'layout': 'horizontal_grid', 'name': 'Bed Leveling', 'children':
-          [{'width': '11', 'output': 'WARNING: DO NOT USE CONTROLS WITHOUT HOMING FIRST!!!'},
-            {'width': '11', 'output': 'If you changed settings, make sure you refresh the page'},
-          {'width': '2', 'commands':
+          [{'width': '2', 'commands':
             [],
           'customClass': 'btn', 'additionalClasses': 'btn-danger nowrap', 'name': 'Apply Heat'},
           {'width': '7', 'commands':
@@ -61,7 +59,14 @@ $(function() {
             settings.feed_rate(), 'G0 Z' + settings.lower_z() + ' F500'],
           'customClass': 'btn', 'additionalClasses': 'nowrap', 'name': 'Front Right', 'offset': '2'}]
       }]
-      
+
+      if (settings.show_warning_banner()) {
+        baseSettings[0].children.splice(0, 0,
+          {'width': '11', 'output': 'If you changed settings, make sure you refresh the page'},
+          {'width': '11', 'output': 'WARNING: DO NOT USE CONTROLS WITHOUT HOMING FIRST!!!'}
+        );
+      }
+
       if (settings.autolevel()) {
         baseSettings[0].children[3].width = '2';
         baseSettings[0].children[3].offset = '0';
