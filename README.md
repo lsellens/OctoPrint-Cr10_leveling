@@ -6,6 +6,8 @@ This plugin adds buttons to apply heat to the bed and nozzle, and move the print
 
 The coordinates and temperatures can all be customized in the plugin’s settings.
 
+![image](https://raw.githubusercontent.com/OctoPrint/plugins.octoprint.org/refs/heads/gh-pages/assets/img/plugins/CR10_Leveling/control.png)
+
 ## Warning
 
 After turning on your printer, you must first home it before you can safely issue gcode that causes movement.
@@ -15,7 +17,7 @@ Failing to do so can cause the printer to move out-of-bounds.
 
 ## Setup
 
-Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager)
+Install via the bundled [Plugin Manager](https://docs.octoprint.org/en/master/bundledplugins/pluginmanager.html)
 or manually using this URL:
 
     https://github.com/lsellens/OctoPrint-Cr10_leveling/archive/master.zip
@@ -24,9 +26,11 @@ or manually using this URL:
 
 Options can be configured from OctoPrint's settings menu under "Plugins"
 Available options are:
+ - Show Warning Banner (Enables/Disables UI warning about homing)
  - Bed Temp
  - Nozzle Temp
- - Simultaneously heat Bed and Nozzle
+ - Wait for heating to finish
+ - Play post-heat tune (only visable if "Wait for Heating to finish" is Enabled)
  - Feed Rate (Speed of movement)
  - Lower Z coordinate
  - Upper Z coordinate
@@ -36,3 +40,5 @@ Available options are:
  - Back Left Position
  - Back Right Position
  - Center Position
+
+![image](https://raw.githubusercontent.com/OctoPrint/plugins.octoprint.org/refs/heads/gh-pages/assets/img/plugins/CR10_Leveling/settings.png)
