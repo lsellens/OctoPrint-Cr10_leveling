@@ -83,6 +83,12 @@ $(function () {
         children.push(createButton({ width: '11', output: 'WARNING: DO NOT USE CONTROLS WITHOUT HOMING FIRST!!!' }));
       }
 
+      if (settings.has_heated_bed()) {
+        children.push(creatButton({ width: '11', output: 'Has a heated bed' }));
+      } else {
+        children.push(creatButton({ width: '11', output: 'Does not have a heated bed' }));
+      }
+
       // Apply/Stop heat buttons
       const applyHeatButton = createButton({ name: 'Apply Heat', additionalClasses: 'btn-danger nowrap' });
       const stopHeatButton = createButton({
