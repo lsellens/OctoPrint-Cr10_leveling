@@ -21,6 +21,9 @@ $(function () {
     const self = this;
     self.settings = parameters[0];
 
+    const settings = self.settings.settings.settings.plugins.CR10_Leveling;
+    const has_heated_bed = settings.has_heated_bed();
+
     function createButton({ width = '2', offset = '0', name, commands = [], command = null, output = null, customClass = 'btn', additionalClasses = 'nowrap' }) {
       const button = {
         width,
@@ -39,15 +42,33 @@ $(function () {
       return button;
     }
 
-    function applyHeatCommands(button, bed, nozzle) {
+    function applyHeatCommands(button, nozzle, bed) {
       if (button && Array.isArray(button.commands)) {
-        button.commands.unshift(`M140 S${bed}`, `M104 S${nozzle}`);
+        if (settings.has_heated_bed()) {
+          button.commands.unshift(`M104 S${nozzle}`, `M140 S${bed}`);
+        } else {
+          button.commands.unshift(`M104 S${nozzle}`);
+        }
       }
     }
 
-    function waitForHeatCommands(button, bed, nozzle) {
+    function waitForHeatCommands(button, nozzle, bed) {
       if (button && Array.isArray(button.commands)) {
-        button.commands.push(`M190 S${bed}`, `M109 S${nozzle}`);
+        if (settings.has_heated_bed()) {
+          button.commands.push(`M109 S${nozzle}`, `M190 S${bed}`);
+        } else {
+          button.commands.unshift(`M109 S${nozzle}`);
+        }
+      }
+    }
+
+    function stopHeatCommands(button, nozzle, bed) {
+      if (button && Array.isArray(button.commands)) {
+        if (settings.has_heated_bed()) {
+          button.commands.push(`M104 S0`, `M140 S0`);
+        } else {
+          button.commands.unshift(`M104 S0`);
+        }
       }
     }
 
@@ -73,7 +94,6 @@ $(function () {
     }
 
     self.getAdditionalControls = function () {
-      const settings = self.settings.settings.settings.plugins.CR10_Leveling;
       const children = [];
 
       children.push(createButton({ width: '11', output: 'If you changed settings, make sure you refresh the page' }));
@@ -83,21 +103,9 @@ $(function () {
         children.push(createButton({ width: '11', output: 'WARNING: DO NOT USE CONTROLS WITHOUT HOMING FIRST!!!' }));
       }
 
-      if (settings.has_heated_bed()) {
-        children.push(creatButton({ width: '11', output: 'Has a heated bed' }));
-      } else {
-        children.push(creatButton({ width: '11', output: 'Does not have a heated bed' }));
-      }
-
       // Apply/Stop heat buttons
       const applyHeatButton = createButton({ name: 'Apply Heat', additionalClasses: 'btn-danger nowrap' });
-      const stopHeatButton = createButton({
-        name: 'Stop Heat',
-        commands: ['M140 S0', 'M104 S0'],
-        width: '7',
-        offset: '2',
-        additionalClasses: 'btn-warning nowrap'
-      });
+      const stopHeatButton = createButton({ name: 'Stop Heat', width: '7', offset: '2', additionalClasses: 'btn-warning nowrap' });
 
       children.push(applyHeatButton, stopHeatButton);
 
@@ -148,18 +156,20 @@ $(function () {
 
       // Add heat commands
       if (settings.wait_for_heat()) {
-        waitForHeatCommands(applyHeatButton, settings.bed_temp(), settings.nozzle_temp());
+        waitForHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp());
 
         if (settings.play_tune()) {
           addTuneCommands(applyHeatButton);
         }
       } else {
-        applyHeatCommands(applyHeatButton, settings.bed_temp(), settings.nozzle_temp());
+        applyHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp());
       }
 
       if (settings.play_tune()) {
         addTuneCommands(applyHeatButton);
       }
+
+      stopHeatCommands(stopHeatButton);
 
       return [{
         customClass: '',
