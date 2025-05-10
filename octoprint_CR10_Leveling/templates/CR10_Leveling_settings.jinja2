@@ -36,15 +36,21 @@ Email: electr0sheep@electr0sheep.com
   </div>
   <div class="control-group">
     <h3>Apply Heat</h3>
+    <label class="control-label">Nozzle Temp:</label>
+    <div class="controls">
+      <input type="number" step="0.1" data-bind="value: settings.plugins.CR10_Leveling.nozzle_temp">
+    </div>
+  </div>
+  <div class="control-group" data-bind="visible: settings.plugins.CR10_Leveling.has_heated_bed">
     <label class="control-label">Bed Temp:</label>
     <div class="controls">
       <input type="number" step="0.1" data-bind="value: settings.plugins.CR10_Leveling.bed_temp">
     </div>
   </div>
-  <div class="control-group">
-    <label class="control-label">Nozzle Temp:</label>
+  <div class="control-group" data-bind="visible: settings.plugins.CR10_Leveling.has_heated_chamber">
+    <label class="control-label">Chamber Temp:</label>
     <div class="controls">
-      <input type="number" step="0.1" data-bind="value: settings.plugins.CR10_Leveling.nozzle_temp">
+      <input type="number" step="0.1" data-bind="value: settings.plugins.CR10_Leveling.chamber_temp">
     </div>
   </div>
   <div class="control-group">

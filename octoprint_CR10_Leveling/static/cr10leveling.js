@@ -23,6 +23,7 @@ $(function () {
 
     const settings = self.settings.settings.settings.plugins.CR10_Leveling;
     const has_heated_bed = settings.has_heated_bed();
+    const has_heated_chamber = settings.has_heated_chamber();
 
     function createButton({ width = '2', offset = '0', name, commands = [], command = null, output = null, customClass = 'btn', additionalClasses = 'nowrap' }) {
       const button = {
@@ -42,9 +43,11 @@ $(function () {
       return button;
     }
 
-    function applyHeatCommands(button, nozzle, bed) {
+    function applyHeatCommands(button, nozzle, bed, chamber) {
       if (button && Array.isArray(button.commands)) {
-        if (settings.has_heated_bed()) {
+        if (settings.has_heated_chamber()) {
+          button.commands.unshift(`M104 S${nozzle}`, `M140 S${bed}`, `M141 S${chamber}`);
+        } else if (settings.has_heated_bed()) {
           button.commands.unshift(`M104 S${nozzle}`, `M140 S${bed}`);
         } else {
           button.commands.unshift(`M104 S${nozzle}`);
@@ -52,20 +55,24 @@ $(function () {
       }
     }
 
-    function waitForHeatCommands(button, nozzle, bed) {
+    function waitForHeatCommands(button, nozzle, bed, chamber) {
       if (button && Array.isArray(button.commands)) {
-        if (settings.has_heated_bed()) {
-          button.commands.push(`M109 S${nozzle}`, `M190 S${bed}`);
+        if (settings.has_heated_chamber()) {
+          button.commands.push(`M109 S${nozzle}`, `M190 S${bed}`, `M191 S${chamber}`);
+        } else if (settings.has_heated_bed()) {
+          button.commands.unshift(`M109 S${nozzle}` `M190 S${bed}`);
         } else {
           button.commands.unshift(`M109 S${nozzle}`);
         }
       }
     }
 
-    function stopHeatCommands(button, nozzle, bed) {
+    function stopHeatCommands(button, nozzle, bed, chamber) {
       if (button && Array.isArray(button.commands)) {
-        if (settings.has_heated_bed()) {
-          button.commands.push(`M104 S0`, `M140 S0`);
+        if (settings.has_heated_chamber()) {
+          button.commands.push(`M104 S0`, `M140 S0`, `M140 S0`);
+        } else if (settings.has_heated_bed()) {
+          button.commands.unshift(`M104 S0`, `M140 S0`);
         } else {
           button.commands.unshift(`M104 S0`);
         }
@@ -156,13 +163,13 @@ $(function () {
 
       // Add heat commands
       if (settings.wait_for_heat()) {
-        waitForHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp());
+        waitForHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp(), settings.chamber_temp());
 
         if (settings.play_tune()) {
           addTuneCommands(applyHeatButton);
         }
       } else {
-        applyHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp());
+        applyHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp(), settings.chamber_temp());
       }
 
       if (settings.play_tune()) {
