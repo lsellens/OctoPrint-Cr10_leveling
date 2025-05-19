@@ -27,8 +27,9 @@ or manually using this URL:
 Options can be configured from OctoPrint's settings menu under "Plugins"
 Available options are:
  - Show Warning Banner (Enables/Disables UI warning about homing)
- - Bed Temp
  - Nozzle Temp
+ - Bed Temp (Only visable if Heated Bed enabled in active printer profile)
+ - Chamber Temp (Only visable if Heated Chamber enabled in active printer profile)
  - Wait for heating to finish
  - Play post-heat tune (only visable if "Wait for Heating to finish" is Enabled)
  - Feed Rate (Speed of movement)
