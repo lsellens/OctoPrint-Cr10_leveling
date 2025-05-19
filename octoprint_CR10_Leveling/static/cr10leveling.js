@@ -22,13 +22,7 @@ $(function () {
     self.settings = parameters[0];
 
     function createButton({ width = '2', offset = '0', name, commands = [], command = null, output = null, customClass = 'btn', additionalClasses = 'nowrap' }) {
-      const button = {
-        width,
-        offset,
-        customClass,
-        additionalClasses,
-        name
-      };
+      const button = { width, offset, customClass, additionalClasses, name };
       if (output) {
         button.output = output;
       } else if (command) {
@@ -39,16 +33,55 @@ $(function () {
       return button;
     }
 
-    function applyHeatCommands(button, bed, nozzle) {
-      if (button && Array.isArray(button.commands)) {
-        button.commands.unshift(`M140 S${bed}`, `M104 S${nozzle}`);
+    function applyHeatCommands(button, nozzle, bed, chamber) {
+      if (!button || !Array.isArray(button.commands)) return;
+
+      const settings = self.settings.settings.plugins.CR10_Leveling;
+      const commands = [`M104 S${nozzle}`];
+
+      if (settings.has_heated_bed()) {
+        commands.push(`M140 S${bed}`);
       }
+
+      if (settings.has_heated_chamber()) {
+        commands.push(`M141 S${chamber}`);
+      }
+
+      button.commands.unshift(...commands);
     }
 
-    function waitForHeatCommands(button, bed, nozzle) {
-      if (button && Array.isArray(button.commands)) {
-        button.commands.push(`M190 S${bed}`, `M109 S${nozzle}`);
+    function waitForHeatCommands(button, nozzle, bed, chamber) {
+      if (!button || !Array.isArray(button.commands)) return;
+
+      const settings = self.settings.settings.plugins.CR10_Leveling;
+      const commands = [`M109 S${nozzle}`];
+
+      if (settings.has_heated_bed()) {
+        commands.push(`M190 S${bed}`);
       }
+
+      if (settings.has_heated_chamber()) {
+        commands.push(`M191 S${chamber}`);
+      }
+
+      button.commands.push(...commands);
+    }
+
+    function stopHeatCommands(button, nozzle, bed, chamber) {
+      if (!button || !Array.isArray(button.commands)) return;
+
+      const settings = self.settings.settings.plugins.CR10_Leveling;
+      const commands = [`M104 S0`];
+
+      if (settings.has_heated_bed()) {
+        commands.push(`M140 S0`);
+      }
+
+      if (settings.has_heated_chamber()) {
+        commands.push(`M141 S0`);
+      }
+
+      button.commands.push(...commands);
     }
 
     function addTuneCommands(button) {
@@ -73,7 +106,7 @@ $(function () {
     }
 
     self.getAdditionalControls = function () {
-      const settings = self.settings.settings.settings.plugins.CR10_Leveling;
+      const settings = self.settings.settings.plugins.CR10_Leveling;
       const children = [];
 
       children.push(createButton({ width: '11', output: 'If you changed settings, make sure you refresh the page' }));
@@ -85,13 +118,7 @@ $(function () {
 
       // Apply/Stop heat buttons
       const applyHeatButton = createButton({ name: 'Apply Heat', additionalClasses: 'btn-danger nowrap' });
-      const stopHeatButton = createButton({
-        name: 'Stop Heat',
-        commands: ['M140 S0', 'M104 S0'],
-        width: '7',
-        offset: '2',
-        additionalClasses: 'btn-warning nowrap'
-      });
+      const stopHeatButton = createButton({ name: 'Stop Heat', width: '7', offset: '2', additionalClasses: 'btn-warning nowrap' });
 
       children.push(applyHeatButton, stopHeatButton);
 
@@ -142,18 +169,16 @@ $(function () {
 
       // Add heat commands
       if (settings.wait_for_heat()) {
-        waitForHeatCommands(applyHeatButton, settings.bed_temp(), settings.nozzle_temp());
+        waitForHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp(), settings.chamber_temp());
 
         if (settings.play_tune()) {
           addTuneCommands(applyHeatButton);
         }
       } else {
-        applyHeatCommands(applyHeatButton, settings.bed_temp(), settings.nozzle_temp());
+        applyHeatCommands(applyHeatButton, settings.nozzle_temp(), settings.bed_temp(), settings.chamber_temp());
       }
 
-      if (settings.play_tune()) {
-        addTuneCommands(applyHeatButton);
-      }
+      stopHeatCommands(stopHeatButton);
 
       return [{
         customClass: '',
@@ -166,6 +191,6 @@ $(function () {
 
   OCTOPRINT_VIEWMODELS.push({
     construct: MyCustomViewModel,
-    dependencies: ["controlViewModel"]
+    dependencies: ["settingsViewModel", "controlViewModel"]
   });
 });

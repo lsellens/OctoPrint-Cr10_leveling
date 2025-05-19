@@ -39,12 +39,16 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
         s.set(["controls"], controlList)
 
     def get_settings_defaults(self):
+        printer_profile = self._printer_profile_manager.get_current_or_default()
+        heated_bed = printer_profile['heatedBed']
+        heated_chamber = printer_profile['heatedChamber']
         return dict(show_warning_banner=True, bed_temp=50, nozzle_temp=170,
                     play_tune=True, wait_for_heat=True, front_left_x=30,
                     front_left_y=30, front_right_x=270, front_right_y=30,
                     back_left_x=30, back_left_y=270, back_right_x=270,
                     back_right_y=270, center_x=150, center_y=150, lower_z=0,
-                    upper_z=10, feed_rate=3600, autolevel="")
+                    upper_z=10, feed_rate=3600, autolevel="", has_heated_bed=heated_bed,
+                    has_heated_chamber=heated_chamber)
 
     def get_template_configs(self):
         return [dict(type="settings", custom_bindings=False)]
