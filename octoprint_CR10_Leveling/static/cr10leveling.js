@@ -113,7 +113,7 @@ $(function () {
 
       // Optional warning banners
       if (settings.show_warning_banner()) {
-        children.push(createButton({ width: '11', output: 'WARNING: DO NOT USE CONTROLS WITHOUT HOMING FIRST!!!' }));
+        children.push(createButton({ width: '11', output: 'Warning: Do not use controls without homing first!' }));
       }
 
       // Apply/Stop heat buttons
@@ -132,7 +132,7 @@ $(function () {
 
         const autolevel = settings.autolevel();
         const autolevelButton = createButton({
-          name: 'Autolevel',
+          name: 'Auto Level',
           width: '7',
           offset: '0',
           additionalClasses: 'btn-success',
@@ -148,7 +148,7 @@ $(function () {
       const positions = [
         { name: 'Back \xa0Left\xa0', x: settings.back_left_x(), y: settings.back_left_y(), offset: '0' },
         { name: 'Back Right', x: settings.back_right_x(), y: settings.back_right_y(), offset: '2' },
-        { name: 'Center', x: settings.center_x(), y: settings.center_y(), offset: '2', width: '9' },
+        { name: '\xa0\xa0Center\xa0\xa0', x: settings.center_x(), y: settings.center_y(), offset: '2', width: '9' },
         { name: 'Front \xa0Left\xa0', x: settings.front_left_x(), y: settings.front_left_y(), offset: '0' },
         { name: 'Front Right', x: settings.front_right_x(), y: settings.front_right_y(), offset: '2' }
       ];
