@@ -73,6 +73,9 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
             )
         )
 
+    def is_template_autoescaped(self):
+        return True
+
 
 __plugin_name__ = "Bed Leveling Plugin"
 __plugin_pythoncompat__ = ">=2.7, <4"
