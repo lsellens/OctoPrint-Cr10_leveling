@@ -1,0 +1,13 @@
+{
+    // Points Pylance to the Python interpreter within your OctoPrint development virtual environment.
+    // Replace '../OctoPrint/venv' with the actual path to your OctoPrint development venv.
+    "python.defaultInterpreterPath": "../OctoPrint/venv/bin/python",
+
+    // Tells Pylance where to find your plugin's actual source code.
+    "python.analysis.extraPaths": [
+        "./octoprint_Cr10_Leveling"
+    ],
+
+    // Tells Pylance where to find the generated stub files.
+    "python.analysis.stubPath": "./stubs"
+}

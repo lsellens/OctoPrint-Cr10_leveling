@@ -1,0 +1,34 @@
+name: Build Release Zip
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create zip archive
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          TAG_NAME="${GITHUB_REF_NAME}"
+          ZIP_NAME="${REPO_NAME}-${TAG_NAME}.zip"
+
+          zip -r "$ZIP_NAME" . \
+            -x ".git/*" \
+               ".gitignore" \
+               ".github/*" \
+               ".vscode/*" \
+               "extras/*" \
+               "stubs/*"
+
+      - name: Upload zip to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.zip"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

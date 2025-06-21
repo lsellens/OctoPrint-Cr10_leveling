@@ -22,7 +22,8 @@ screenshots:
 - url: /assets/img/plugins/CR10_Leveling/settings.png
   alt: Settings
 featuredimage: /assets/img/plugins/CR10_Leveling/control.png
-
+compatibility:
+  python: '>=2.7, <4'
 ---
 
 This plugin adds buttons to apply heat to the bed and nozzle, and move the

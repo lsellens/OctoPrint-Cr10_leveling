@@ -1,4 +1,9 @@
-# OctoPrint Bed Leveling Plugin. Allows user to easily level 3D printer.
+""""OctoPrint Bed Leveling Plugin for OctoPrint
+This plugin provides an easy way to manually level the bed of a 3D printer.
+It allows users to set various parameters such as nozzle temperature, bed temperature,
+and coordinates for leveling points.
+"""
+
 # Copyright (C) 2018  electr0sheep
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,28 +22,35 @@
 # Email: electr0sheep@electr0sheep.com
 
 from __future__ import absolute_import
+from typing import Any, Dict, Optional, Literal
 
 from octoprint.settings import settings
 import octoprint.plugin
+import octoprint.printer.profile
 
 
-class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
+class Cr10LevelingPlugin(octoprint.plugin.AssetPlugin, # pylint: disable=too-many-ancestors
                           octoprint.plugin.TemplatePlugin,
                           octoprint.plugin.SettingsPlugin,
                           octoprint.plugin.StartupPlugin):
+    """OctoPrint Bed Leveling Plugin. Allows user to easily level 3D printer."""
 
-    def on_after_startup(self):
+    _printer_profile_manager: octoprint.printer.profile.PrinterProfileManager
+
+    def on_after_startup(self) -> None:
+        """Called after the plugin has been started."""
         s = settings()
 
-        controlList = s.get(["controls"])
+        control_list = s.get(["controls"])
 
-        for item in controlList:
-            if (item['name'] == 'Bed Leveling'):
-                controlList.remove(item)
+        for item in control_list:
+            if item['name'] == 'Bed Leveling':
+                control_list.remove(item)
 
-        s.set(["controls"], controlList)
+        s.set(["controls"], control_list)
 
-    def get_settings_defaults(self):
+    def get_settings_defaults(self) -> dict:
+        """Return the default settings for the plugin."""
         printer_profile = self._printer_profile_manager.get_current_or_default()
         heated_bed = printer_profile['heatedBed']
         heated_chamber = printer_profile['heatedChamber']
@@ -53,10 +65,12 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
     def get_template_configs(self):
         return [dict(type="settings", custom_bindings=False)]
 
-    def get_assets(self):
+    def get_assets(self) -> dict:
+        """Return the assets (JavaScript, CSS) for the plugin."""
         return dict(js=["cr10leveling.js"])
 
-    def get_update_information(self):
+    def get_update_information(self) -> dict:
+        """Return information about the plugin for software update checks."""
         return dict(
             CR10_Leveling=dict(
                 displayName="Bed Leveling Plugin",
@@ -67,25 +81,38 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
                 user="lsellens",
                 repo="OctoPrint-Cr10_leveling",
                 current=self._plugin_version,
+                stable_branch=dict(
+                    name="Stable", branch="master", comittish=["master"]
+                ),
+                prerelease_branch=[
+                    dict(
+                        name="Testing",
+                        branch="develop",
+                        comittish=["develop", "master"]
+                    )
+                ],
 
                 # update method: pip
                 pip="https://github.com/lsellens/OctoPrint-Cr10_leveling/archive/{target_version}.zip"
             )
         )
 
-    def is_template_autoescaped(self):
+    def is_template_autoescaped(self) -> Literal[True]:
+        """Return whether the template should be auto-escaped."""
         return True
-
 
 __plugin_name__ = "Bed Leveling Plugin"
 __plugin_pythoncompat__ = ">=2.7, <4"
 
+__plugin_implementation__: Optional[Cr10LevelingPlugin] = None
+__plugin_hooks__: Optional[Dict[str, Any]] = None
 
-def __plugin_load__():
-    global __plugin_implementation__
-    __plugin_implementation__ = Cr10_levelingPlugin()
+def __plugin_load__() -> None:
+    """Load the plugin."""
+    global __plugin_implementation__ # pylint: disable=global-statement
+    __plugin_implementation__ = Cr10LevelingPlugin()
 
-    global __plugin_hooks__
+    global __plugin_hooks__ # pylint: disable=global-statement
     __plugin_hooks__ = {
         "octoprint.plugin.softwareupdate.check_config": __plugin_implementation__.get_update_information
     }

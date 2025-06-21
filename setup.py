@@ -14,7 +14,7 @@ plugin_package = "octoprint_CR10_Leveling"
 plugin_name = "Bed Leveling"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = "2.1.6"
+plugin_version = "2.1.7"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
@@ -66,12 +66,12 @@ additional_setup_parameters = {}
 from setuptools import setup
 
 try:
-	import octoprint_setuptools
+    import octoprint_setuptools
 except:
-	print("Could not import OctoPrint's setuptools, are you sure you are running that under "
-	      "the same python installation that OctoPrint is installed under?")
-	import sys
-	sys.exit(-1)
+    print("Could not import OctoPrint's setuptools, are you sure you are running that under "
+          "the same python installation that OctoPrint is installed under?")
+    import sys
+    sys.exit(-1)
 
 setup_parameters = octoprint_setuptools.create_plugin_setup_parameters(
 	identifier=plugin_identifier,
