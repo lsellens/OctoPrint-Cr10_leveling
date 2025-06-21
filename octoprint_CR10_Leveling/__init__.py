@@ -67,6 +67,16 @@ class Cr10_levelingPlugin(octoprint.plugin.AssetPlugin,
                 user="lsellens",
                 repo="OctoPrint-Cr10_leveling",
                 current=self._plugin_version,
+                stable_branch=dict(
+                    name="Stable", branch="master", comittish=["master"]               
+                ),
+                prerelease_branch=[
+                    dict(
+                        name="Testing",
+                        branch="develop",
+                        comittish=["develop", "master"]
+                    )
+                ],
 
                 # update method: pip
                 pip="https://github.com/lsellens/OctoPrint-Cr10_leveling/archive/{target_version}.zip"
