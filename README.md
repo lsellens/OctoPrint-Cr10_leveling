@@ -1,10 +1,9 @@
-# Bed Leveling for OctoPrint
+# Manual Bed Tramming for OctoPrint
 
 [![OctoPrint](https://img.shields.io/badge/OctoPrint-Plugin-green?logo=octoprint)](https://plugins.octoprint.org/)
-[![GitHub Release](https://img.shields.io/github/v/release/lsellens/OctoPrint-Cr10_leveling)](https://github.com/lsellens/OctoPrint-Cr10_leveling/releases)
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![GitHub Release](https://img.shields.io/github/v/release/lsellens/octoprint-manual_bed_tramming)](https://github.com/lsellens/octoprint-manual_bed_tramming/releases)
 
-**Quickly heat your bed & nozzle and move your printer head to precise leveling positions — directly from OctoPrint’s control tab.**
+**Quickly heat your bed & nozzle and move your printer head to precise tramming positions — directly from OctoPrint’s control tab.**
 
 ---
 
@@ -47,18 +46,17 @@ Failing to home may cause the printer to move out-of-bounds.
 
 **Option 1: Plugin Manager**  
 1. In OctoPrint, go to **Settings → Plugin Manager → Get More...**
-2. Search for `Bed Leveling` and install.
+2. Search for `Manual Bed Tramming` and install.
 
-**Option 2: Manual Install**  
-In OctoPrint’s Plugin Manager, paste this URL:
-https://github.com/lsellens/OctoPrint-Cr10_leveling/archive/master.zip
-
+**Option 2: Manual Install** 
+1. Download the [latest release zip](https://github.com/lsellens/octoprint-manual_bed_tramming/releases/latest)
+2. Add it manually in OctoPrint’s Plugin Manager
 
 ---
 
 ## ⚙️ Configuration
 
-From **Settings → Plugins → Bed Leveling**, you can customize:
+From **Settings → Plugins → Manual Bed Tramming**, you can customize:
 
 - Show Warning Banner  
 - Nozzle Temp  

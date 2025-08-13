@@ -1,4 +1,4 @@
-// OctoPrint Bed Leveling Plugin. Allows user to easily level 3D printer.
+// OctoPrint Manual Bed Tramming Plugin. Allows user to easily tram 3D printer.
 // Copyright (C) 2018  electr0sheep
 //
 // This program is free software: you can redistribute it and/or modify
@@ -144,7 +144,7 @@ $(function () {
         children.splice(stopIndex + 1, 0, autolevelButton);
       }
 
-      // Leveling position buttons
+      // Tramming position buttons
       const positions = [
         { name: 'Back \xa0Left\xa0', x: settings.back_left_x(), y: settings.back_left_y(), offset: '0' },
         { name: 'Back Right', x: settings.back_right_x(), y: settings.back_right_y(), offset: '2' },
@@ -183,7 +183,7 @@ $(function () {
       return [{
         customClass: '',
         layout: 'horizontal_grid',
-        name: 'Bed Leveling',
+        name: 'Bed Tramming',
         children: children
       }];
     }

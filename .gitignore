@@ -1,4 +1,4 @@
 .DS_Store
 .pyc
-CR_10_Leveling.egg-info/
-octoprint_CR10_Leveling/__init__.pyc
+CR10_Leveling.egg-info/
+octoprint_manual_bed_tramming/__init__.pyc

@@ -5,9 +5,9 @@
 
     // Tells Pylance where to find your plugin's actual source code.
     "python.analysis.extraPaths": [
-        "./octoprint_Cr10_Leveling"
+        "./octoprint_manual_bed_tramming"
     ],
 
     // Tells Pylance where to find the generated stub files.
-    "python.analysis.stubPath": "./stubs"
+    "python.analysis.stubPath": "./.stubs"
 }

@@ -24,7 +24,8 @@ jobs:
                ".github/*" \
                ".vscode/*" \
                "extras/*" \
-               "stubs/*"
+               "translations/*" \
+               ".stubs/*"
 
       - name: Upload zip to release
         uses: softprops/action-gh-release@v2

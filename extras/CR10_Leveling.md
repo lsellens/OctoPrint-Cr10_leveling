@@ -2,20 +2,20 @@
 layout: plugin
 
 id: CR10_Leveling
-title: Bed Leveling
-description: Adds bed leveling buttons to the controls tab
+title: Manual Bed Tramming
+description: Adds bed tramming buttons to the controls tab
 authors:
 - lsellens
 - AvanOsch
 - electr0sheep
 license: AGPLv3
 date: 2021-04-24
-homepage: https://github.com/lsellens/OctoPrint-Cr10_leveling
-source: https://github.com/lsellens/OctoPrint-Cr10_leveling
-archive: https://github.com/lsellens/OctoPrint-Cr10_leveling/archive/master.zip
+homepage: https://github.com/lsellens/octoprint-manual_bed_tramming
+source: https://github.com/lsellens/octoprint-manual_bed_tramming
+archive: https://github.com/lsellens/octoprint-manual_bed_tramming/archive/master.zip
 tags:
 - ui
-- bed leveling
+- bed tramming
 screenshots:
 - url: /assets/img/plugins/CR10_Leveling/control.png
   alt: Control Tab

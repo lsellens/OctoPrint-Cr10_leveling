@@ -1,7 +1,7 @@
-""""OctoPrint Bed Leveling Plugin for OctoPrint
-This plugin provides an easy way to manually level the bed of a 3D printer.
+""""Manual Bed Tramming Plugin for OctoPrint
+This plugin provides an easy way to manually tram the bed of a 3D printer.
 It allows users to set various parameters such as nozzle temperature, bed temperature,
-and coordinates for leveling points.
+and coordinates for tramming points.
 """
 
 # Copyright (C) 2018  electr0sheep
@@ -29,11 +29,11 @@ import octoprint.plugin
 import octoprint.printer.profile
 
 
-class Cr10LevelingPlugin(octoprint.plugin.AssetPlugin, # pylint: disable=too-many-ancestors
+class ManualBedTrammingPlugin(octoprint.plugin.AssetPlugin, # pylint: disable=too-many-ancestors
                           octoprint.plugin.TemplatePlugin,
                           octoprint.plugin.SettingsPlugin,
                           octoprint.plugin.StartupPlugin):
-    """OctoPrint Bed Leveling Plugin. Allows user to easily level 3D printer."""
+    """OctoPrint Manual Bed Tramming Plugin. Allows user to easily tram 3D printer."""
 
     _printer_profile_manager: octoprint.printer.profile.PrinterProfileManager
 
@@ -44,7 +44,7 @@ class Cr10LevelingPlugin(octoprint.plugin.AssetPlugin, # pylint: disable=too-man
         control_list = s.get(["controls"])
 
         for item in control_list:
-            if item['name'] == 'Bed Leveling':
+            if item['name'] == 'Bed Tramming':
                 control_list.remove(item)
 
         s.set(["controls"], control_list)
@@ -67,19 +67,19 @@ class Cr10LevelingPlugin(octoprint.plugin.AssetPlugin, # pylint: disable=too-man
 
     def get_assets(self) -> dict:
         """Return the assets (JavaScript, CSS) for the plugin."""
-        return dict(js=["cr10leveling.js"])
+        return dict(js=["js/manual_bed_tramming.js"], css=["css/manual_bed_tramming.css"])
 
     def get_update_information(self) -> dict:
         """Return information about the plugin for software update checks."""
         return dict(
             CR10_Leveling=dict(
-                displayName="Bed Leveling Plugin",
+                displayName="Manual Bed Tramming",
                 displayVersion=self._plugin_version,
 
                 # version check: github repository
                 type="github_release",
                 user="lsellens",
-                repo="OctoPrint-Cr10_leveling",
+                repo="octoprint-manual_bed_tramming",
                 current=self._plugin_version,
                 stable_branch=dict(
                     name="Stable", branch="master", comittish=["master"]
@@ -93,7 +93,7 @@ class Cr10LevelingPlugin(octoprint.plugin.AssetPlugin, # pylint: disable=too-man
                 ],
 
                 # update method: pip
-                pip="https://github.com/lsellens/OctoPrint-Cr10_leveling/archive/{target_version}.zip"
+                pip="https://github.com/lsellens/octoprint-manual_bed_tramming/archive/{target_version}.zip"
             )
         )
 
@@ -101,16 +101,16 @@ class Cr10LevelingPlugin(octoprint.plugin.AssetPlugin, # pylint: disable=too-man
         """Return whether the template should be auto-escaped."""
         return True
 
-__plugin_name__ = "Bed Leveling Plugin"
+__plugin_name__ = "Manual Bed Tramming"
 __plugin_pythoncompat__ = ">=2.7, <4"
 
-__plugin_implementation__: Optional[Cr10LevelingPlugin] = None
+__plugin_implementation__: Optional[ManualBedTrammingPlugin] = None
 __plugin_hooks__: Optional[Dict[str, Any]] = None
 
 def __plugin_load__() -> None:
     """Load the plugin."""
     global __plugin_implementation__ # pylint: disable=global-statement
-    __plugin_implementation__ = Cr10LevelingPlugin()
+    __plugin_implementation__ = ManualBedTrammingPlugin()
 
     global __plugin_hooks__ # pylint: disable=global-statement
     __plugin_hooks__ = {
