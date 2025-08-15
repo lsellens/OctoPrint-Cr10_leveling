@@ -1,3 +1,40 @@
 [build-system]
-requires = ["setuptools>=42", "wheel", "octoprint_setuptools"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "octoprint-manual_bed_tramming"
+version = "2.1.7"
+description = "Adds bed tramming buttons to the controls tab"
+authors = [
+    {name = "lsellens", email = "lsellens@gmail.com"},
+    {name = "electr0sheep", email = "electr0sheep@electr0sheep.com"}
+]
+readme = {file = "README.md", content-type = "markdown"}
+dynamic = [
+    "license"
+]
+
+requires-python = ">=2.7, <4"
+
+dependencies = []
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = [
+    "octoprint_manual_bed_tramming",
+    "octoprint_manual_bed_tramming.*"
+]
+
+[project.entry-points."octoprint.plugin"]
+CR10_Leveling = "octoprint_manual_bed_tramming"
+
+[project.urls]
+Homepage = "https://github.com/lsellens/octoprint-manual_bed_tramming"
+
+[project.optional-dependencies]
+develop = [
+    "go-task-bin"
+]

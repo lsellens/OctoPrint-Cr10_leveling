@@ -19,13 +19,11 @@ jobs:
           ZIP_NAME="${REPO_NAME}-${TAG_NAME}.zip"
 
           zip -r "$ZIP_NAME" . \
-            -x ".git/*" \
-               ".gitignore" \
-               ".github/*" \
-               ".vscode/*" \
+            -x ".*" \
+               ".*/*" \
                "extras/*" \
                "translations/*" \
-               ".stubs/*"
+               "babel.cfg"
 
       - name: Upload zip to release
         uses: softprops/action-gh-release@v2

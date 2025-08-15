@@ -1,25 +1,15 @@
-// OctoPrint Manual Bed Tramming Plugin. Allows user to easily tram 3D printer.
-// Copyright (C) 2018  electr0sheep
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-// Email: electr0sheep@electr0sheep.com
-
+/*
+ * View model for octoprint-manual_bed_tramming
+ *
+ * Author: lsellens
+ * License: AGPL-3.0
+ */
 $(function () {
-  function MyCustomViewModel(parameters) {
+  function ManualBedTrammingViewModel(parameters) {
     const self = this;
-    self.settings = parameters[0];
+
+    self.settingsViewModel = parameters[0];
+    self.controlViewModel = parameters[1];
 
     function createButton({ width = '2', offset = '0', name, commands = [], command = null, output = null, customClass = 'btn', additionalClasses = 'nowrap' }) {
       const button = { width, offset, customClass, additionalClasses, name };
@@ -36,7 +26,7 @@ $(function () {
     function applyHeatCommands(button, nozzle, bed, chamber) {
       if (!button || !Array.isArray(button.commands)) return;
 
-      const settings = self.settings.settings.plugins.CR10_Leveling;
+      const settings = self.settingsViewModel.settings.plugins.CR10_Leveling;
       const commands = [`M104 S${nozzle}`];
 
       if (settings.has_heated_bed()) {
@@ -53,7 +43,7 @@ $(function () {
     function waitForHeatCommands(button, nozzle, bed, chamber) {
       if (!button || !Array.isArray(button.commands)) return;
 
-      const settings = self.settings.settings.plugins.CR10_Leveling;
+      const settings = self.settingsViewModel.settings.plugins.CR10_Leveling;
       const commands = [`M109 S${nozzle}`];
 
       if (settings.has_heated_bed()) {
@@ -70,7 +60,7 @@ $(function () {
     function stopHeatCommands(button, nozzle, bed, chamber) {
       if (!button || !Array.isArray(button.commands)) return;
 
-      const settings = self.settings.settings.plugins.CR10_Leveling;
+      const settings = self.settingsViewModel.settings.plugins.CR10_Leveling;
       const commands = [`M104 S0`];
 
       if (settings.has_heated_bed()) {
@@ -106,7 +96,7 @@ $(function () {
     }
 
     self.getAdditionalControls = function () {
-      const settings = self.settings.settings.plugins.CR10_Leveling;
+      const settings = self.settingsViewModel.settings.plugins.CR10_Leveling;
       const children = [];
 
       children.push(createButton({ width: '11', output: 'If you changed settings, make sure you refresh the page' }));
@@ -190,7 +180,7 @@ $(function () {
   }
 
   OCTOPRINT_VIEWMODELS.push({
-    construct: MyCustomViewModel,
+    construct: ManualBedTrammingViewModel,
     dependencies: ["settingsViewModel", "controlViewModel"]
   });
 });
